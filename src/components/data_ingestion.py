@@ -12,6 +12,7 @@ from src.components.model_trainer import ModelTrainingConfig,ModelTrainer
 @dataclass
 class DataIngestionConfig:
     train_data_path=os.path.join('artifact','train.csv')
+    print("path of art"+train_data_path)
     test_data_path=os.path.join('artifact','test.csv')
     raw_data_path=os.path.join('artifact','raw.csv')
 
@@ -28,11 +29,11 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             #Saving dataframe to raw file
             df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
-            #logging.info('train test intiated')
+            logging.info('train test intiated')
             train_set,test_set=train_test_split(df,test_size=0.2,random_state=23)
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
-            #logging.info('ingestion completed')
+            logging.info('ingestion completed')
             return(
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path

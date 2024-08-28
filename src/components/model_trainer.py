@@ -47,12 +47,14 @@ class ModelTrainer:
 
             model_report:dict=evaluate_models(X_train=xtrain,y_train=ytrain,X_test=xtest,y_test=ytest,models=model)
             #best model score
-
+            #@breakpoint()
             best_model_score=max(sorted(model_report.values()))
-
+            
             best_model_name=list(model_report.keys())[list(model_report.values()).index(best_model_score)]
+            print("best model name ",best_model_name)
 
             best_model=model[best_model_name]
+            print("best_model ",best_model)
 
             if best_model_score<0.6:
                 raise CustomException('No best fit model')

@@ -27,13 +27,13 @@ class DataTransformation:
 
         ...
         try:
-              numerical_columns = ["writing score", "reading score"]
+              numerical_columns = ["writing_score", "reading_score"]
               categorical_columns = [
                 "gender",
-                "race/ethnicity",
-                "parental level of education",
+                "race_ethnicity",
+                "parental_level_of_education",
                 "lunch",
-                "test preparation course",
+                "test_preparation_course",
                  ]
               
               num_pipeline=Pipeline(
@@ -70,6 +70,7 @@ class DataTransformation:
                   train_df=pd.read_csv(train_path)
                   test_df=pd.read_csv(test_path)
                   logging.info('training and test data completed')
+                  #breakpoint()
 
                   preprocessor_obj=self.get_transformer_object()
                   target_column_name='math score'
